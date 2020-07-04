@@ -8,12 +8,39 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      loading: false,
+      error: null,
+      user: null,
     };
   }
 
-  login = (event) => {
+  login = async (event) => {
     event.preventDefault();
-    console.log(this.state);
+    this.setState({ loading: true });
+
+    try {
+      const response = await fetch("http://localhost:4000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password,
+        }),
+      });
+      const { error, data } = await response.json();
+      console.log("usuario de la api", error, data);
+      if (error) {
+        this.setState({ error });
+      } else {
+        this.setState({ user: data, error: null });
+      }
+      this.setState({ loading: false });
+    } catch (error) {
+      console.error("Ocurrió un error", error);
+      this.setState({ loading: false });
+    }
   };
 
   updateInputField = (event) => {
@@ -23,6 +50,11 @@ export default class Login extends Component {
   };
 
   render() {
+    if (this.state.user) {
+      window.location.replace("/");
+      return null;
+    }
+
     return (
       <div className="container">
         <h2 className="login-title">LOGIN</h2>
@@ -43,6 +75,7 @@ export default class Login extends Component {
               onChange={this.updateInputField}
             />
           </div>
+          {this.state.error ? <p>{this.state.error}</p> : null}
           <div className="form-actions">
             <div>
               <label>
@@ -51,7 +84,11 @@ export default class Login extends Component {
               </label>
               <a href="#">Forgot?</a>
             </div>
-            <button type="submit" onClick={this.login}>
+            <button
+              type="submit"
+              onClick={this.login}
+              disabled={this.state.loading}
+            >
               Iniciar sesión
             </button>
           </div>
