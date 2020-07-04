@@ -16,9 +16,9 @@ export default class Login extends Component {
     console.log(this.state);
   };
 
-  updateEmail = (event) => {
+  updateInputField = (event) => {
     this.setState({
-      email: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -33,9 +33,15 @@ export default class Login extends Component {
               type="email"
               placeholder="Correo electrónico"
               value={this.state.email}
-              onChange={this.updateEmail}
+              onChange={this.updateInputField}
             />
-            <input name="password" type="password" placeholder="Contraseña" />
+            <input
+              name="password"
+              type="password"
+              placeholder="Contraseña"
+              value={this.state.password}
+              onChange={this.updateInputField}
+            />
           </div>
           <div className="form-actions">
             <div>
