@@ -1,38 +1,53 @@
-.App {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-title {
+  color: #585179;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-form {
+  width: 50%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-form .form-controls {
   display: flex;
   flex-direction: column;
+}
+
+.form-controls input {
+  margin-bottom: 1rem;
+  padding: 10px;
+  background-color: #e6e6e6;
+  border: none;
+  color: #9594a6;
+  border-radius: 5px;
+}
+
+.form-actions > div {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.form-actions > div > label > input[type="checkbox"] {
+  margin: unset;
+  margin-right: 4px;
+}
+
+.form-actions > button {
+  background-color: #807efe;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 10px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
