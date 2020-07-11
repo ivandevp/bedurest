@@ -41,9 +41,9 @@ function App() {
             <Signup />
           </Route>
 
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard" redirectTo="/login">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </div>
     </Router>

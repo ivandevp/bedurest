@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 // props: { name: "Ivan" }
 export default class Home extends React.Component {
@@ -43,6 +44,10 @@ export default class Home extends React.Component {
     // const name = this.props.name;
     console.log("==RENDER==");
 
-    return <h1>Home {this.props.name}</h1>;
+    return (
+      <Layout>
+        <h2>Home {this.props.name}</h2>
+      </Layout>
+    );
   }
 }

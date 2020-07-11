@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.search-form {
+  flex: 4;
+}
+
+.user {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user span[role="img"] {
+  cursor: pointer;
+}
+
+.user .avatar {
+  height: 30px;
+  padding: 0 10px;
+}
+
+.user .user-menu {
+  position: absolute;
+  right: 0;
+}
+
+.user .user-menu ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.user .user-menu ul li {
+  cursor: pointer;
+}
