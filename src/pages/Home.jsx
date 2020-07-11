@@ -16,13 +16,13 @@ const Home = () => {
     };
 
     getPins();
-  }, []);
+  }, []); // => componentDidMount
 
   return (
     <Layout>
       {pins.map((pin) => {
         return (
-          <div>
+          <div key={pin._id}>
             <img src={pin.image} alt={pin.title} />
             <h3>{pin.title}</h3>
             <p>{pin.description}</p>

@@ -15,7 +15,7 @@ const PrivateRoute = ({ children, ...props }) => {
         if (isLoggedIn()) {
           return children;
         } else {
-          return <Redirect to={props.redirectTo} />;
+          return <Redirect to="/login" />;
         }
       }}
     />

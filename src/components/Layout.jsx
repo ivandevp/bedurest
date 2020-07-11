@@ -9,7 +9,7 @@ const Layout = (props) => {
 
   const logout = () => {
     localStorage.removeItem("user");
-    history.push("/");
+    history.push("/login");
   };
 
   return (
@@ -23,7 +23,7 @@ const Layout = (props) => {
         </div>
 
         <form className="search-form">
-          <input type="search" />
+          <input type="search" placeholder="Buscar pines" />
         </form>
 
         <div className="user">
@@ -50,7 +50,7 @@ const Layout = (props) => {
           </div>
         </div>
       </header>
-      {props.children}
+      <main>{props.children}</main>
     </div>
   );
 };

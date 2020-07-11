@@ -29,7 +29,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <PrivateRoute exact path="/" redirectTo="/login">
+          <PrivateRoute exact path="/">
             <Home />
           </PrivateRoute>
 
@@ -41,7 +41,7 @@ function App() {
             <Signup />
           </Route>
 
-          <PrivateRoute path="/dashboard" redirectTo="/login">
+          <PrivateRoute path="/dashboard">
             <Dashboard />
           </PrivateRoute>
         </Switch>

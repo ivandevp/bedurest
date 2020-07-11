@@ -3,6 +3,7 @@
   width: 100%;
   padding: 10px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -16,6 +17,15 @@
 
 .search-form {
   flex: 4;
+  text-align: center;
+}
+
+.search-form input {
+  width: 60%;
+  padding: 5px 20px;
+  background-color: #efefef;
+  border: none;
+  border-radius: 20px;
 }
 
 .user {
