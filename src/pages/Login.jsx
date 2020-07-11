@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -34,6 +35,7 @@ export default class Login extends Component {
       if (error) {
         this.setState({ error });
       } else {
+        localStorage.setItem("user", JSON.stringify(data));
         this.setState({ user: data, error: null });
       }
       this.setState({ loading: false });
@@ -51,8 +53,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.user) {
-      window.location.replace("/");
-      return null;
+      return <Redirect to="/" />;
     }
 
     return (
