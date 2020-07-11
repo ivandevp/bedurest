@@ -1,53 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 
-// props: { name: "Ivan" }
-export default class Home extends React.Component {
-  // Inicializar estados, bindear eventos, declarar atributos globales
-  constructor(props) {
-    super(props);
+const Home = () => {
+  const [pins, setPins] = useState([]);
 
-    this.state = {
-      counter: 0,
+  useEffect(() => {
+    const getPins = async () => {
+      try {
+        const response = await fetch("http://44f42e61558f.ngrok.io/pins");
+        const { data } = await response.json();
+        setPins(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
-    console.log("==CONSTRUCTOR==");
-  }
+    getPins();
+  }, []);
 
-  // Requests iniciales, iniciar sockets, hacer cálculos para modificar el DOM
-  componentDidMount() {
-    this.setState({
-      counter: 1,
-    });
+  return (
+    <Layout>
+      {pins.map((pin) => {
+        return (
+          <div>
+            <img src={pin.image} alt={pin.title} />
+            <h3>{pin.title}</h3>
+            <p>{pin.description}</p>
 
-    console.log("==COMPONENT DID MOUNT==");
-  }
+            <div>
+              <img src={pin.author.image} />
+              <strong>{pin.author.name}</strong>
+            </div>
 
-  // Para optimizar el performance
-  shouldComponentUpdate() {
-    console.log("==SHOULD COMPONENT UPDATE?==");
-    return true;
-  }
+            <strong>{pin.category}</strong>
+          </div>
+        );
+      })}
+    </Layout>
+  );
+};
 
-  // Actualizar estados basados en condiciones
-  componentDidUpdate() {
-    console.log("==COMPONENT DID UPDATE==");
-  }
-
-  // Eliminar conexiones abiertas y evitar memory leaks
-  componentWillUnmount() {
-    console.log("==COMPONENT WILL UNMOUNT==");
-  }
-
-  // Lleva toda la interfaz que se ejecuta una o múltiples veces
-  render() {
-    // const name = this.props.name;
-    console.log("==RENDER==");
-
-    return (
-      <Layout>
-        <h2>Home {this.props.name}</h2>
-      </Layout>
-    );
-  }
-}
+export default Home;
