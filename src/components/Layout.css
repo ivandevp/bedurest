@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .logo {
   flex: 1;
 }

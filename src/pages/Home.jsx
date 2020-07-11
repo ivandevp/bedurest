@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
+import "./Home.css";
 
 const Home = () => {
   const [pins, setPins] = useState([]);
@@ -20,22 +21,31 @@ const Home = () => {
 
   return (
     <Layout>
-      {pins.map((pin) => {
-        return (
-          <div key={pin._id}>
-            <img src={pin.image} alt={pin.title} />
-            <h3>{pin.title}</h3>
-            <p>{pin.description}</p>
-
-            <div>
-              <img src={pin.author.image} />
-              <strong>{pin.author.name}</strong>
-            </div>
-
-            <strong>{pin.category}</strong>
-          </div>
-        );
-      })}
+      <section className="pin-grid">
+        {pins.map((pin) => {
+          return (
+            <article key={pin._id} className="pin">
+              <div className="pin-image">
+                <img src={pin.image} alt={pin.title} />
+                <div className="pin-metadata">
+                  <p>
+                    <a
+                      href={pin.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {pin.link}
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <div className="pin-title">
+                <h3>{pin.title}</h3>
+              </div>
+            </article>
+          );
+        })}
+      </section>
     </Layout>
   );
 };

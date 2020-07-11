@@ -1,0 +1,29 @@
+.pin-grid {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+}
+
+.pin-image {
+  position: relative;
+}
+
+.pin-image img {
+  border-radius: 16px;
+}
+
+.pin-image .pin-metadata {
+  position: absolute;
+  display: none;
+  bottom: 10px;
+  left: 10px;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.pin-image:hover .pin-metadata {
+  display: block;
+}
