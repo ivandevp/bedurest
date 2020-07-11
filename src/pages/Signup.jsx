@@ -5,6 +5,48 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const signup = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://44f42e61558f.ngrok.io/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          name,
+          image,
+          isAdmin,
+        }),
+      });
+      const { error, data } = await response.json();
+      console.log("usuario de la api", error, data);
+      if (error) {
+        setError(error);
+      } else {
+        setUser(data);
+        setError(null);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error("Ocurrió un error", error);
+      setLoading(false);
+    }
+  };
+
+  if (user) {
+    window.location.replace("/login");
+    return null;
+  }
 
   return (
     <div className="container">
@@ -39,14 +81,19 @@ const Signup = () => {
             value={image}
             onChange={(event) => setImage(event.target.value)}
           />
+          <label>
+            <input
+              name="is-admin"
+              type="checkbox"
+              value={isAdmin}
+              onChange={(event) => setIsAdmin(event.target.checked)}
+            />
+            Es administrador?
+          </label>
         </div>
-        {/* {this.state.error ? <p>{this.state.error}</p> : null} */}
+        {error ? <p>{error}</p> : null}
         <div className="form-actions">
-          <button
-            type="submit"
-            // onClick={this.login}
-            // disabled={this.state.loading}
-          >
+          <button type="submit" onClick={signup} disabled={loading}>
             Registrar
           </button>
         </div>
