@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const response = await fetch("http://44f42e61558f.ngrok.io/pins");
+        const response = await fetch("http://95e7b8bb1ba5.ngrok.io/pins");
         const { data } = await response.json();
         setPins(data);
       } catch (error) {

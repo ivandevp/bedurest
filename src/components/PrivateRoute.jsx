@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-const isLoggedIn = () => {
+export const isLoggedIn = () => {
   const user = JSON.parse(localStorage.getItem("user")); // {}, null
 
   return !!user;
