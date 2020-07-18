@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
 import Layout from "../components/Layout";
 import "./Home.css";
 
+const GET_PINS = gql`
+  query {
+    pins {
+      id
+      title
+      description
+      image
+      link
+    }
+  }
+`;
+
 const Home = () => {
-  const [pins, setPins] = useState([]);
+  const { loading, data, error } = useQuery(GET_PINS);
 
-  useEffect(() => {
-    const getPins = async () => {
-      try {
-        const response = await fetch("http://95e7b8bb1ba5.ngrok.io/pins");
-        const { data } = await response.json();
-        setPins(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-    getPins();
-  }, []); // => componentDidMount
+  const { pins } = data;
 
   return (
     <Layout>
       <section className="pin-grid">
         {pins.map((pin) => {
           return (
-            <article key={pin._id} className="pin">
+            <article key={pin.id} className="pin">
               <div className="pin-image">
                 <img src={pin.image} alt={pin.title} />
                 <div className="pin-metadata">
