@@ -84,7 +84,7 @@ export default class Login extends Component {
                 <input type="checkbox" />
                 Remember me
               </label>
-              <a href="#">Forgot?</a>
+              <span>Forgot?</span>
             </div>
             <button
               type="submit"
