@@ -16,10 +16,12 @@ const Layout = (props) => {
     <div>
       <header className="header">
         <div className="logo">
-          <img
-            src="https://ucarecdn.com/948f3048-7eeb-4fc4-93fe-d55c3795d66a/"
-            alt="Bedurest"
-          />
+          <Link to="/">
+            <img
+              src="https://ucarecdn.com/948f3048-7eeb-4fc4-93fe-d55c3795d66a/"
+              alt="Bedurest"
+            />
+          </Link>
         </div>
 
         <form className="search-form">

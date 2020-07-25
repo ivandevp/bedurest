@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
+import { customFetch } from "../utils/fetch";
 
 export default class Login extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class Login extends Component {
     this.setState({ loading: true });
 
     try {
-      const response = await fetch("http://localhost:4000/login", {
+      const response = await customFetch('/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

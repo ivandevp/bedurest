@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { customFetch } from "../utils/fetch";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://44f42e61558f.ngrok.io/signup", {
+      const response = await customFetch('/signup', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
